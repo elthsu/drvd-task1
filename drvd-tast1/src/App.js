@@ -20,7 +20,7 @@ class App extends React.Component {
   updateInput = (e) => {
     this.setState({
       dim: [],
-      input: parseInt(e.target.value, 10)
+      input: parseInt(e.target.value, 10) || 0
     },
      ()=>{this.submitDim()})
   }
