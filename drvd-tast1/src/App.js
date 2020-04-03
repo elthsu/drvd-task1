@@ -2,11 +2,13 @@ import React from 'react';
 import './App.css';
 
 class App extends React.Component {
+  // Using 2 STATE values to hold user input and an array for the dimentions.
   state = {
     input: "",
     dim: []
   }
 
+  // This is to update the user input
   updateInput = (e) => {
     this.setState({
       dim: [],
@@ -15,14 +17,21 @@ class App extends React.Component {
 
   }
 
+  //Function that submits the user's input and generates the array for the grid.
   submitDim = () => {
     let dim = []
     let row = 0
+    
+    //A loop that generates the white vs black of the checkerboard.
+    
     for (let index = 0; index < (this.state.input * this.state.input); index++) {
+      
+      //Conditional that checks if a row is complete.
       if(Number.isInteger(index / this.state.input)){
         row++
       }
-      // console.log(row % 2)
+
+      //Conditional that checks if a row is even or old - so whether to start with WHITE or BLACK.
       if(row % 2 !== 0){
         if(index % 2 === 0) {
           dim.push("white")
@@ -32,7 +41,6 @@ class App extends React.Component {
         }
       }
       else {
-        console.log(row, index)
         if(this.state.input % 2 === 0){
           if(index % 2 === 0) {
             dim.push("black")
@@ -51,13 +59,14 @@ class App extends React.Component {
         }
 
       }
-
     }
+    //Stores array to STATE
     this.setState({
       dim: dim
     })
   }
 
+  //Clears STATE when user clicks on input box
   clearInput = () => {
     this.setState({
       input: '',
