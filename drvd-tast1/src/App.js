@@ -4,8 +4,16 @@ import './App.css';
 class App extends React.Component {
   // Using 2 STATE values to hold user input and an array for the dimentions.
   state = {
-    input: "",
+    input: '',
     dim: []
+  }
+
+  componentDidMount(){
+    this.setState({
+      dim: [],
+      input: parseInt(8, 10)
+    },
+      ()=>{this.submitDim()})
   }
 
   // This is to update the user input
@@ -13,8 +21,8 @@ class App extends React.Component {
     this.setState({
       dim: [],
       input: parseInt(e.target.value, 10)
-    })
-
+    },
+     ()=>{this.submitDim()})
   }
 
   //Function that submits the user's input and generates the array for the grid.
@@ -85,7 +93,7 @@ class App extends React.Component {
           <div style={{display: "flex", flexDirection:"row", justifyContent:"center", alignItems: "center", height: "50px"}}>
             <p>What do you want the dimension to be for the board?</p>
             <input style={{width: '30px', height: "30px", marginLeft: "20px"}} onClick={this.clearInput}  type="text" value={this.state.input} onChange={this.updateInput} />
-            <button style={{height: "30px", marginLeft: "20px"}} onClick={this.submitDim}>Submit</button>
+            {/* <button style={{height: "30px", marginLeft: "20px"}} onClick={this.submitDim}>Submit</button> */}
           </div>
           <div style={{display:"grid", gridTemplateColumns: gridRows}} >
             {
